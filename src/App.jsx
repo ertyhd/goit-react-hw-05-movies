@@ -1,9 +1,20 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from 'modules/Navbar/Navbar';
+import getMovies from './shared/services/getMovies';
 
-import Home from 'modules/pages/Home/Home';
-import Movies from 'modules/pages/Movies/Movies';
-import NotFoundPage from 'modules/pages/NotFoundPage/NotFoundPage';
+import Home from 'pages/Home/Home';
+import MoviesSearch from 'pages/MoviesSearch/MoviesSearch';
+import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
+
+const fetchMovies = async () => {
+  try {
+    const data = await getMovies();
+    console.log(data.results);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+// fetchMovies();
 
 export const App = () => {
   return (
@@ -11,7 +22,7 @@ export const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<Movies />} />
+        <Route path="/movies" element={<MoviesSearch />} />
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
