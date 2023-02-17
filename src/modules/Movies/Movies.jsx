@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import MoviesList from 'shared/components/MoviesList';
-import getMovies from 'shared/services/getMovies';
+import { getMovies } from 'shared/services/getMovies';
 
 import style from './movies.module.css';
 

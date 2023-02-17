@@ -1,28 +1,25 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from 'modules/Navbar/Navbar';
-import getMovies from './shared/services/getMovies';
 
-import Home from 'pages/Home/Home';
-import MoviesSearch from 'pages/MoviesSearch/MoviesSearch';
+import HomePage from 'pages/HomePage/HomePage';
+import MoviesSearchPage from 'pages/MoviesSearchPage/MoviesSearchPage';
+import SingleMoviePage from 'pages/SingleMoviePage/SingleMoviePage';
+import SingleMovieCastPage from 'pages/SingleMovieCastPage/SingleMovieCastPage';
+import SingleMovieReviewsPage from 'pages/SingleMovieReviewsPage/SingleMovieReviewsPage';
 import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
-
-const fetchMovies = async () => {
-  try {
-    const data = await getMovies();
-    console.log(data.results);
-  } catch (error) {
-    console.log(error.message);
-  }
-};
-// fetchMovies();
 
 export const App = () => {
   return (
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<MoviesSearch />} />
+        SingleMoviePage
+        <Route path="/" element={<HomePage />} />
+        <Route path="/movies" element={<MoviesSearchPage />} />
+        <Route path="/movies/:id" element={<SingleMoviePage />}>
+          <Route path="cast" element={<SingleMovieCastPage />} />
+          <Route path="reviews" element={<SingleMovieReviewsPage />} />
+        </Route>
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
