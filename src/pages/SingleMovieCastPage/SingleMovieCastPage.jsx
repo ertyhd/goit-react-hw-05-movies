@@ -32,6 +32,9 @@ const SingleMovieCastPage = () => {
     if (!cast) {
       return;
     }
+    if (cast.length === 0) {
+      return <p>Nobody auditioned for this movie &#128528;</p>;
+    }
     const elements = cast.map(({ id, profile_path, name, character }) => (
       <li key={id}>
         <img

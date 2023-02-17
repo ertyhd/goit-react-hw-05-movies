@@ -10,7 +10,6 @@ import style from './moviesSearch.module.css';
 
 const MoviesSearch = () => {
   const [items, setItems] = useState([]);
-
   const [searchParams, setSearchParams] = useSearchParams();
   const search = searchParams.get('search');
   const page = searchParams.get('page');
