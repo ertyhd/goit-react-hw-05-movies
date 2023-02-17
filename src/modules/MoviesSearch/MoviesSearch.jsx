@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import Notiflix from 'notiflix';
 import PropTypes from 'prop-types';
 
 import MoviesSearchForm from './MoviesSearchForm/MoviesSearchForm';
@@ -11,7 +10,6 @@ import style from './moviesSearch.module.css';
 
 const MoviesSearch = () => {
   const [items, setItems] = useState([]);
-  const [error, setError] = useState(null);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const search = searchParams.get('search');
@@ -24,8 +22,8 @@ const MoviesSearch = () => {
       try {
         const data = await searchMovies(search, page);
         setItems([...data.results]);
-      } catch (error) {
-        setError(error.message);
+      } catch ({ responce }) {
+        console.log(responce.data.message);
       }
     };
     fetchMovies();
@@ -38,10 +36,8 @@ const MoviesSearch = () => {
     },
     [setSearchParams]
   );
-  console.log('props', items);
   return (
     <div className={style.search_block}>
-      {error && Notiflix.Notify.failure(`${error}`)}
       <MoviesSearchForm initialState={{ search }} onSubmit={onSearchMovies} />
       <MoviesList items={items} />
     </div>

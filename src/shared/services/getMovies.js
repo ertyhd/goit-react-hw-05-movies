@@ -57,7 +57,9 @@ export const getMoviesDetails = async id => {
 
   const requestDetails = {
     original_title,
-    poster_path: `https://www.themoviedb.org/t/p/w300_and_h450_bestv2${poster_path}`,
+    poster_path: poster_path
+      ? `https://www.themoviedb.org/t/p/w300_and_h450_bestv2${poster_path}`
+      : null,
     vote_average,
     overview,
     release_date: release_date_slice.slice(0, 4),

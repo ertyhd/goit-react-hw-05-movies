@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Notiflix from 'notiflix';
 
 import MoviesList from 'shared/components/MoviesList';
 import { getMovies } from 'shared/services/getMovies';
@@ -9,7 +8,6 @@ import { getMovies } from 'shared/services/getMovies';
 
 const Movies = () => {
   const [items, setItems] = useState([]);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -17,17 +15,15 @@ const Movies = () => {
         const data = await getMovies();
         const { results } = data;
         setItems([...results]);
-      } catch (error) {
-        setError(error.message);
+      } catch ({ responce }) {
+        console.log(responce.data.message);
       }
     };
 
     fetchMovies();
-  }, [setItems, setError]);
-  console.log('props', items);
+  }, [setItems]);
   return (
     <>
-      {error && Notiflix.Notify.failure(`${error}`)}
       <MoviesList items={items} />
     </>
   );

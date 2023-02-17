@@ -40,11 +40,11 @@ const SingleMoviePage = () => {
         &#x21A9; Go to home page
       </button>
       <div className={style.movie_details}>
-        {movieDetails.poster_path ? (
-          <img alt="movie poster" src={movieDetails.poster_path} />
-        ) : (
-          <img alt="movie poster" width="300px" src={poster} />
-        )}
+        <img
+          alt="movie poster"
+          src={movieDetails.poster_path ? movieDetails.poster_path : poster}
+        />
+
         <div className={style.descr_block}>
           <h1>
             {movieDetails?.original_title} ({movieDetails?.release_date})
