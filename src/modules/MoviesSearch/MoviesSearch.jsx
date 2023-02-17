@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import MoviesSearchForm from './MoviesSearchForm/MoviesSearchForm';
 import MoviesList from 'shared/components/MoviesList';
@@ -27,19 +28,28 @@ const MoviesSearch = () => {
       }
     };
     fetchMovies();
-  }, [search, page, setItems, searchMovies]);
+  }, [search, page, setItems]);
 
-  const onSearchMovies = useCallback(({ search }) => {
-    setSearchParams({ search, page: 1 });
-    setItems([]);
-  }, []);
-
+  const onSearchMovies = useCallback(
+    ({ search }) => {
+      setSearchParams({ search, page: 1 });
+      setItems([]);
+    },
+    [setSearchParams]
+  );
+  console.log('props', items);
   return (
-    <>
+    <div className={style.search_block}>
       <MoviesSearchForm initialState={{ search }} onSubmit={onSearchMovies} />
       <MoviesList items={items} />
-    </>
+    </div>
   );
 };
 
 export default MoviesSearch;
+
+MoviesSearch.propTypes = {
+  items: PropTypes.array,
+  onSearchMovies: PropTypes.func,
+  search: PropTypes.string,
+};

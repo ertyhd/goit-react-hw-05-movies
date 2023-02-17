@@ -1,0 +1,10 @@
+.movie_details {
+  display: flex;
+  padding: 20px;
+}
+.descr_block {
+  padding: 30px;
+}
+.btn {
+  margin: 20px 0 0 20px;
+}

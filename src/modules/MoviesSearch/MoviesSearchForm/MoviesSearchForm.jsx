@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { useState, useCallback } from 'react';
+import PropTypes from 'prop-types';
 
 import style from './moviesSearch.module.css';
 
@@ -24,15 +25,18 @@ const MoviesSearchForm = ({ initialState, onSubmit }) => {
   return (
     <form className={style.form} onSubmit={handleSubmit}>
       <div>
-        <label htmlFor="">Search movie</label>
+        <label htmlFor="">Search</label>
         <input
+          className={style.search_input}
           value={search}
           onChange={handleChange}
           name="search"
           placeholder="Search movie"
           required
         />
-        <button type="submit">Search</button>
+        <button className={style.search_btn} type="submit">
+          Search
+        </button>
       </div>
     </form>
   );
@@ -44,4 +48,10 @@ MoviesSearchForm.defaultProps = {
   initialState: {
     search: '',
   },
+};
+
+MoviesSearchForm.propTypes = {
+  handleSubmit: PropTypes.func,
+  handleChange: PropTypes.func,
+  search: PropTypes.string,
 };

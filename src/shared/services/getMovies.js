@@ -48,20 +48,20 @@ export const getMoviesDetails = async id => {
     data: {
       original_title = 'n/a',
       poster_path,
-      popularity,
+      vote_average,
       overview,
-      release_date: release_date = 'n/a',
-      genres: genres,
+      release_date: release_date_slice = 'n/a',
+      genres: genres_map,
     },
   } = await instance.get(`/movie/${id}`);
 
   const requestDetails = {
     original_title,
     poster_path: `https://www.themoviedb.org/t/p/w300_and_h450_bestv2${poster_path}`,
-    popularity,
+    vote_average,
     overview,
-    release_date: release_date.slice(0, 4),
-    genres: genres.map(gen => gen.name).join(', '),
+    release_date: release_date_slice.slice(0, 4),
+    genres: genres_map.map(gen => gen.name).join(', '),
   };
 
   return requestDetails;
