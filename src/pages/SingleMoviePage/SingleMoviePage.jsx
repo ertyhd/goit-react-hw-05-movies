@@ -34,7 +34,7 @@ const SingleMoviePage = () => {
       <button
         className={style.btn}
         onClick={() => {
-          navigate('/');
+          navigate('/goit-react-hw-05-movies/');
         }}
       >
         &#x21A9; Go to home page
@@ -44,18 +44,17 @@ const SingleMoviePage = () => {
           alt="movie poster"
           src={movieDetails.poster_path ? movieDetails.poster_path : poster}
         />
-
         <div className={style.descr_block}>
           <h1>
             {movieDetails?.original_title} ({movieDetails?.release_date})
           </h1>
-          <p>Popularity: {voteAverageShort}%</p>
+          <p>User Score: {voteAverageShort}%</p>
           <p>Overview: {movieDetails?.overview}</p>
           <p>Genres: {movieDetails?.genres}</p>
         </div>
       </div>
-
-      <ul>
+      <ul className={style.underline_light}>
+        <p>Additionaly information:</p>
         <Link to="cast">
           <li>Cast</li>
         </Link>

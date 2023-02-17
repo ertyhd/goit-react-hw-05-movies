@@ -6,7 +6,7 @@ import { getMoviesAdditionally } from 'shared/services/getMovies';
 
 import noPhoto from 'img/no_photo.jpg';
 
-// import style from './singleMovieCastPage.module.css';
+import style from './singleMovieCastPage.module.css';
 
 const SingleMovieCastPage = () => {
   const [movieDetails, setMovieDetails] = useState('');
@@ -34,15 +34,15 @@ const SingleMovieCastPage = () => {
     }
     const elements = cast.map(({ id, profile_path, name, character }) => (
       <li key={id}>
-        {profile_path ? (
-          <img
-            alt="actors"
-            width="120px"
-            src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${profile_path} `}
-          />
-        ) : (
-          <img alt="actors" width="120px" src={noPhoto} />
-        )}
+        <img
+          alt="actors"
+          width="120px"
+          src={
+            profile_path
+              ? `https://www.themoviedb.org/t/p/w300_and_h450_bestv2${profile_path}`
+              : noPhoto
+          }
+        />
         <p>Name: {name}</p>
         <p>Character: {character}</p>
       </li>
