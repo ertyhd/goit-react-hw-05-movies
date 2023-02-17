@@ -5,7 +5,11 @@ import style from './moviesList.module.css';
 
 const MoviesList = ({ items }) => {
   const elements = items.map(({ id, title }) => (
-    <Link key={id} to={`/movies/${id}`} className={style.moviesItem}>
+    <Link
+      key={id}
+      to={`/goit-react-hw-05-movies/movies/${id}`}
+      className={style.moviesItem}
+    >
       <li>{title}</li>
     </Link>
   ));
