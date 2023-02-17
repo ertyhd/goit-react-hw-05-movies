@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import Notiflix from 'notiflix';
 
 import MoviesList from 'shared/components/MoviesList';
 import { getMovies } from 'shared/services/getMovies';
@@ -24,7 +25,12 @@ const Movies = () => {
     fetchMovies();
   }, [setItems, setError]);
   console.log('props', items);
-  return <MoviesList items={items} />;
+  return (
+    <>
+      {error && Notiflix.Notify.failure(`${error}`)}
+      <MoviesList items={items} />
+    </>
+  );
 };
 
 export default Movies;

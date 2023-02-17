@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import Notiflix from 'notiflix';
 import PropTypes from 'prop-types';
 
 import MoviesSearchForm from './MoviesSearchForm/MoviesSearchForm';
@@ -40,6 +41,7 @@ const MoviesSearch = () => {
   console.log('props', items);
   return (
     <div className={style.search_block}>
+      {error && Notiflix.Notify.failure(`${error}`)}
       <MoviesSearchForm initialState={{ search }} onSubmit={onSearchMovies} />
       <MoviesList items={items} />
     </div>
