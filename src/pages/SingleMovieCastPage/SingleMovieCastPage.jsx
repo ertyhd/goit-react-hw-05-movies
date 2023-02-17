@@ -6,7 +6,7 @@ import { getMoviesAdditionally } from 'shared/services/getMovies';
 
 import noPhoto from 'img/no_photo.jpg';
 
-import style from './singleMovieCastPage.module.css';
+// import style from './singleMovieCastPage.module.css';
 
 const SingleMovieCastPage = () => {
   const [movieDetails, setMovieDetails] = useState('');
