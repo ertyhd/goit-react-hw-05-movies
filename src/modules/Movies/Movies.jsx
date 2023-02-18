@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import MoviesList from 'shared/components/MoviesList';
 import { getMovies } from 'shared/services/getMovies';
 
-// import style from './movies.module.css';
-
 const Movies = () => {
   const [items, setItems] = useState([]);
 
