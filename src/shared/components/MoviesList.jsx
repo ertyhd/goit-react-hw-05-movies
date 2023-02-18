@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import style from './moviesList.module.css';
 
@@ -19,3 +20,12 @@ const MoviesList = ({ items }) => {
 };
 
 export default memo(MoviesList);
+
+MoviesList.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};

@@ -50,8 +50,15 @@ MoviesSearchForm.defaultProps = {
   },
 };
 
+MoviesSearchForm.defaultProps = {
+  initialState: { search: '' },
+};
+
 MoviesSearchForm.propTypes = {
-  handleSubmit: PropTypes.func,
+  onSubmit: PropTypes.func.isRequired,
+  initialState: PropTypes.shape({
+    search: PropTypes.string,
+  }),
   handleChange: PropTypes.func,
   search: PropTypes.string,
 };

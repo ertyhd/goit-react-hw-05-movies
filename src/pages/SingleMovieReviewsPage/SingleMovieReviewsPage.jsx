@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
+import PropTypes from 'prop-types';
 
 import { getMoviesAdditionally } from 'shared/services/getMovies';
 
@@ -51,3 +52,10 @@ const SingleMovieReviewsPage = () => {
 };
 
 export default SingleMovieReviewsPage;
+
+SingleMovieReviewsPage.propTypes = {
+  id: PropTypes.string.isRequired,
+  movieDetails: PropTypes.shape({
+    results: PropTypes.array,
+  }).isRequired,
+};

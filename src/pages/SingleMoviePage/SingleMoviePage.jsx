@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
+import PropTypes from 'prop-types';
 
 import { getMoviesDetails } from '../../shared/services/getMovies';
 import poster from '../../img/no-poster-available.webp';
@@ -74,3 +75,10 @@ const SingleMoviePage = () => {
 };
 
 export default SingleMoviePage;
+
+SingleMoviePage.propTypes = {
+  movieDetails: PropTypes.object,
+  handleSubmit: PropTypes.func,
+  handleChange: PropTypes.func,
+  search: PropTypes.string,
+};
