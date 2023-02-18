@@ -1,4 +1,10 @@
-import { Outlet, Link, useParams, useNavigate } from 'react-router-dom';
+import {
+  Outlet,
+  Link,
+  useParams,
+  useNavigate,
+  useLocation,
+} from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
@@ -12,8 +18,9 @@ const SingleMoviePage = () => {
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from;
   const voteAverageShort = (movieDetails.vote_average * 10).toFixed(0);
-
   useEffect(() => {
     const fetchMovie = async () => {
       try {
@@ -28,16 +35,15 @@ const SingleMoviePage = () => {
     };
     fetchMovie();
   }, [id]);
+
+  const goBack = () => {
+    navigate(from);
+  };
   return (
     <>
       {loading ? Loading.standard('Loading...') : Loading.remove()}
-      <button
-        className={style.btn}
-        onClick={() => {
-          navigate('/goit-react-hw-05-movies/');
-        }}
-      >
-        &#x21A9; Go to home page
+      <button className={style.btn} onClick={goBack}>
+        &#x21A9; Go back
       </button>
       <div className={style.movie_details}>
         <img
@@ -55,10 +61,10 @@ const SingleMoviePage = () => {
       </div>
       <ul className={style.underline_light}>
         <p>Additionaly information:</p>
-        <Link to="cast">
+        <Link to="cast" state={{ from }}>
           <li>Cast</li>
         </Link>
-        <Link to="reviews">
+        <Link to="reviews" state={{ from }}>
           <li>Reviews</li>
         </Link>
       </ul>
